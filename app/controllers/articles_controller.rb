@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+class ArticlesController < ApplicationController
     def index
         @articles = Article.all
     end
@@ -16,7 +16,17 @@ class ApplicationController < ActionController::Base
         @article.save
         redirect_to articles_path
     end
-    
+
+    def edit
+        @task = Article.find(params[:id])
+    end
+
+    def destroy
+        @article = Article.find(params[:id])
+        @article.destroy
+        redirect_to articles_path
+    end
+
     private
     
     def article_params
